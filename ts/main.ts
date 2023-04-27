@@ -5,19 +5,15 @@ class VideoGame{
     isDigitalOnly:boolean;
 }
 
-// Test Code
-/*
-let myGame = new VideoGame();
-myGame.title = "Mario";
-myGame.rating = "E";
-myGame.isDigitalOnly = true;
-*/
 
 window.onload = function(){
     let addBtn = <HTMLElement>document.querySelector("input[type=button]");
     addBtn.onclick = addVideoGame;
 }
 
+/**
+ * if all data is valid it will "add the game"
+ */
 function addVideoGame(){
     console.log("addVideoGame was called");
 
@@ -52,6 +48,10 @@ function getVideoGame():VideoGame{
     return game;
 }
 
+/**
+ * Displays the added game below the add button
+ * @param myGame The game that was added
+ */
 function displayGame(myGame:VideoGame):void{
     let displayDiv = getById("display");
 
@@ -73,9 +73,40 @@ function displayGame(myGame:VideoGame):void{
     displayDiv.appendChild(gameInfo);
 }
 
-// ADD VALIDATION CODE
+/**
+ * Displays error messages above the Title field
+ * @param errorMessage Appropriate error message
+ */
+function displayError(errorMessage:string){
+    let errorDiv = getById("error");
+
+    // Create <p> with error message
+    let errorInfo = document.createElement("h3");
+    errorInfo.innerText = errorMessage;
+
+    errorDiv.appendChild(errorInfo);
+}
+
+/**
+ * Validates all data
+ * @returns True if data is valid
+ */
 function isAllDataValid(){
-    return true;
+    let isDataValid = true;
+    let errorMessage = "";
+    if((<HTMLInputElement>getById("title")).value == "") {
+        isDataValid = false;
+        displayError("Please enter a title.");
+    }
+    if(!parseFloat((<HTMLInputElement>getById("price")).value)) {
+        isDataValid = false;
+        displayError("Please enter a price as a number.")
+    }
+    if((<HTMLSelectElement>getById("rating")).value == "Please choose a rating") {
+        isDataValid = false;
+        displayError("Please select the game's rating");
+    }
+    return isDataValid;
 }
 
 function getById(id:string){

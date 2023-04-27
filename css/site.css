@@ -1,12 +1,12 @@
 html{
-    background-color: gray;
+    background-color: lightgrey;
 }
 
 h1{
     text-align: center;
 }
 
-div[id="validation-summary"]{
+div[id="error"]{
     text-align: center;
     color: red;
 }

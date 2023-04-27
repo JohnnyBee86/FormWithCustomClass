@@ -40,8 +40,28 @@ function displayGame(myGame) {
     displayDiv.appendChild(gameHeading);
     displayDiv.appendChild(gameInfo);
 }
+function displayError(errorMessage) {
+    var errorDiv = getById("error");
+    var errorInfo = document.createElement("h3");
+    errorInfo.innerText = errorMessage;
+    errorDiv.appendChild(errorInfo);
+}
 function isAllDataValid() {
-    return true;
+    var isDataValid = true;
+    var errorMessage = "";
+    if (getById("title").value == "") {
+        isDataValid = false;
+        displayError("Please enter a title.");
+    }
+    if (!parseFloat(getById("price").value)) {
+        isDataValid = false;
+        displayError("Please enter a price as a number.");
+    }
+    if (getById("rating").value == "Please choose a rating") {
+        isDataValid = false;
+        displayError("Please select the game's rating");
+    }
+    return isDataValid;
 }
 function getById(id) {
     return document.getElementById(id);
