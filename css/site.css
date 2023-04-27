@@ -6,9 +6,13 @@ h1{
     text-align: center;
 }
 
-div > p{
+div[id="validation-summary"]{
     text-align: center;
     color: red;
+}
+
+div[id="display"]{
+    text-align: center;
 }
 
 input, select{
