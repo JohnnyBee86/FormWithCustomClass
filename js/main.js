@@ -4,14 +4,17 @@ var VideoGame = (function () {
     return VideoGame;
 }());
 window.onload = function () {
-    var addBtn = document.querySelector("input[type=button]");
+    var addBtn = getById("add");
     addBtn.onclick = addVideoGame;
+    var clearAdds = getById("clear-adds");
+    clearAdds.onclick = clearAddedGames;
 };
 function addVideoGame() {
     console.log("addVideoGame was called");
     if (isAllDataValid()) {
         var game = getVideoGame();
         displayGame(game);
+        clearErrors();
     }
 }
 function getVideoGame() {
@@ -26,6 +29,18 @@ function getVideoGame() {
     game.isDigitalOnly = digitalOnly.checked;
     console.log(game);
     return game;
+}
+function clearErrors() {
+    var errorDiv = getById("error");
+    while (errorDiv.firstChild) {
+        errorDiv.removeChild(errorDiv.lastChild);
+    }
+}
+function clearAddedGames() {
+    var displayDiv = getById("display");
+    while (displayDiv.firstChild) {
+        displayDiv.removeChild(displayDiv.lastChild);
+    }
 }
 function displayGame(myGame) {
     var displayDiv = getById("display");

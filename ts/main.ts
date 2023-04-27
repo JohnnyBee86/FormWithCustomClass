@@ -7,8 +7,10 @@ class VideoGame{
 
 
 window.onload = function(){
-    let addBtn = <HTMLElement>document.querySelector("input[type=button]");
+    let addBtn = <HTMLElement>getById("add");
     addBtn.onclick = addVideoGame;
+    let clearAdds = <HTMLElement>getById("clear-adds");
+    clearAdds.onclick = clearAddedGames;
 }
 
 /**
@@ -20,6 +22,7 @@ function addVideoGame(){
     if(isAllDataValid()){
         let game = getVideoGame();
         displayGame(game);
+        clearErrors();
     }
 }
 
@@ -46,6 +49,26 @@ function getVideoGame():VideoGame{
 
     console.log(game);
     return game;
+}
+
+/**
+ * Clears all error Messages
+ */
+function clearErrors(){
+    let errorDiv = getById("error");
+    while(errorDiv.firstChild) {
+        errorDiv.removeChild(errorDiv.lastChild);
+    }
+}
+
+/**
+ * Clears added games
+ */
+function clearAddedGames(){
+    let displayDiv = getById("display");
+    while(displayDiv.firstChild) {
+        displayDiv.removeChild(displayDiv.lastChild);
+    }
 }
 
 /**
