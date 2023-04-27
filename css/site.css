@@ -11,21 +11,17 @@ div > p{
     color: red;
 }
 
-input{
-    padding: .5em;
-    margin-bottom: .5em;
+input, select{
+    padding: .4em;
+    margin-bottom: 1em;
 }
 
-select{
-    margin-bottom: .5em;
+input[type="checkbox"], input[type="button"]{
+    margin-left: 50%;
 }
 
 label[for="title"], label[for="price"], label[for="rating"]{
     width: 50%;
     display: inline-block;
     text-align: right;
-}
-
-input[type="checkbox"], input[type="button"]{
-    margin-left: 50%;
 }
