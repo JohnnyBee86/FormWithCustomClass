@@ -18,11 +18,11 @@ window.onload = function(){
  */
 function addVideoGame(){
     console.log("addVideoGame was called");
-
+    
+    clearErrors();
     if(isAllDataValid()){
         let game = getVideoGame();
         displayGame(game);
-        clearErrors();
     }
 }
 
@@ -55,6 +55,8 @@ function getVideoGame():VideoGame{
  * Clears all error Messages
  */
 function clearErrors(){
+    console.log("clearError was called");
+    
     let errorDiv = getById("error");
     while(errorDiv.firstChild) {
         errorDiv.removeChild(errorDiv.lastChild);
