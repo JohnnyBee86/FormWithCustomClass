@@ -6,7 +6,7 @@ class VideoGame{
 }
 
 
-window.onload = function(){
+window.onload = function():void{
     let addBtn = <HTMLElement>getById("add");
     addBtn.onclick = addVideoGame;
     let clearAdds = <HTMLElement>getById("clear-adds");
@@ -16,7 +16,7 @@ window.onload = function(){
 /**
  * if all data is valid it will "add the game"
  */
-function addVideoGame(){
+function addVideoGame():void{
     console.log("addVideoGame was called");
     
     clearErrors();
@@ -34,17 +34,17 @@ function addVideoGame(){
 function getVideoGame():VideoGame{
     let game = new VideoGame();
 
-    let titleInput = <HTMLInputElement>getById("title");
+    let titleInput = getInputById("title");
     game.title = titleInput.value;
     // or single line > game.title = (<HTMLInputElement>getById("title")).value;
 
-    let priceInput = <HTMLInputElement>getById("price");
+    let priceInput = getInputById("price");
     game.price = parseFloat(priceInput.value); // convert string to number
 
-    let rating = <HTMLSelectElement>getById("rating");
+    let rating = getInputById("rating");
     game.rating = rating.value;
 
-    let digitalOnly = <HTMLInputElement>getById("online"); // boolean value
+    let digitalOnly = getInputById("online"); // boolean value
     game.isDigitalOnly = digitalOnly.checked; // checked is true, unchecked false
 
     console.log(game);
@@ -54,7 +54,7 @@ function getVideoGame():VideoGame{
 /**
  * Clears all error Messages
  */
-function clearErrors(){
+function clearErrors():void{
     console.log("clearError was called");
     
     let errorDiv = getById("error");
@@ -66,7 +66,7 @@ function clearErrors(){
 /**
  * Clears added games
  */
-function clearAddedGames(){
+function clearAddedGames():void{
     let displayDiv = getById("display");
     while(displayDiv.firstChild) {
         displayDiv.removeChild(displayDiv.lastChild);
@@ -102,7 +102,7 @@ function displayGame(myGame:VideoGame):void{
  * Displays error messages above the Title field
  * @param errorMessage Appropriate error message
  */
-function displayError(errorMessage:string){
+function displayError(errorMessage:string):void{
     let errorDiv = getById("error");
 
     // Create <p> with error message
@@ -116,24 +116,27 @@ function displayError(errorMessage:string){
  * Validates all data
  * @returns True if data is valid
  */
-function isAllDataValid(){
+function isAllDataValid():boolean{
     let isDataValid = true;
-    let errorMessage = "";
-    if((<HTMLInputElement>getById("title")).value == "") {
+    if(getInputById("title").value == "") {
         isDataValid = false;
         displayError("Please enter a title.");
     }
-    if(!parseFloat((<HTMLInputElement>getById("price")).value)) {
+    if(!parseFloat((getInputById("price")).value)) {
         isDataValid = false;
         displayError("Please enter a price as a number.")
     }
-    if((<HTMLSelectElement>getById("rating")).value == "Please choose a rating") {
+    if(getInputById("rating").value == "Please choose a rating") {
         isDataValid = false;
         displayError("Please select the game's rating");
     }
     return isDataValid;
 }
 
-function getById(id:string){
+function getById(id:string):HTMLElement{
     return document.getElementById(id);
+}
+
+function getInputById(id:string):HTMLInputElement{
+    return <HTMLInputElement>document.getElementById(id);
 }

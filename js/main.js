@@ -19,13 +19,13 @@ function addVideoGame() {
 }
 function getVideoGame() {
     var game = new VideoGame();
-    var titleInput = getById("title");
+    var titleInput = getInputById("title");
     game.title = titleInput.value;
-    var priceInput = getById("price");
+    var priceInput = getInputById("price");
     game.price = parseFloat(priceInput.value);
-    var rating = getById("rating");
+    var rating = getInputById("rating");
     game.rating = rating.value;
-    var digitalOnly = getById("online");
+    var digitalOnly = getInputById("online");
     game.isDigitalOnly = digitalOnly.checked;
     console.log(game);
     return game;
@@ -64,21 +64,23 @@ function displayError(errorMessage) {
 }
 function isAllDataValid() {
     var isDataValid = true;
-    var errorMessage = "";
-    if (getById("title").value == "") {
+    if (getInputById("title").value == "") {
         isDataValid = false;
         displayError("Please enter a title.");
     }
-    if (!parseFloat(getById("price").value)) {
+    if (!parseFloat((getInputById("price")).value)) {
         isDataValid = false;
         displayError("Please enter a price as a number.");
     }
-    if (getById("rating").value == "Please choose a rating") {
+    if (getInputById("rating").value == "Please choose a rating") {
         isDataValid = false;
         displayError("Please select the game's rating");
     }
     return isDataValid;
 }
 function getById(id) {
+    return document.getElementById(id);
+}
+function getInputById(id) {
     return document.getElementById(id);
 }
