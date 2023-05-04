@@ -105,7 +105,7 @@ function displayGame(myGame:VideoGame):void{
 function displayError(errorMessage:string):void{
     let errorDiv = getById("error");
 
-    // Create <p> with error message
+    // Create <h3> with error message
     let errorInfo = document.createElement("h3");
     errorInfo.innerText = errorMessage;
 
